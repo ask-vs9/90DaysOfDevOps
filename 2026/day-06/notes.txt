@@ -1,0 +1,6 @@
+Line 1 - Linux basics
+Line 2 - Appending with >>
+Line 3 - Using tee command
+Line 4 - Logs are text files
+Line 5 - Configs are text files
+Line 6 - Practice daily
