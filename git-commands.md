@@ -101,3 +101,20 @@ Example:
 ```bash
 git log
 ```
+
+## git diff
+
+Shows changes between versions.
+
+Example:
+
+```bash
+git diff
+
+
+---
+
+## Check Changes
+
+```bash
+git diff
