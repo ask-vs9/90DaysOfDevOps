@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  web:
+    build: ./app
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      REDIS_HOST: redis
+    networks:
+      - app-network
+    labels:
+      project: "day34"
+
+  postgres:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d mydb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    labels:
+      project: "day34"
+
+  redis:
+    image: redis:latest
+    networks:
+      - app-network
+    labels:
+      project: "day34"
+
+networks:
+  app-network:
+
+volumes:
+  postgres-data:
