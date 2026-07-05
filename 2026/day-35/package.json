@@ -1,0 +1,9 @@
+{
+  "name": "day35-node-app",
+  "version": "1.0.0",
+  "description": "Docker Multi Stage Demo",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  }
+}
