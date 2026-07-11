@@ -1,0 +1,23 @@
+---
+server:
+  name: web-server
+  ip: 192.168.1.10
+  port: 80
+
+database:
+  host: localhost
+  name: employee_db
+  credentials:
+    user: admin
+    password: admin123
+
+startup_script_pipe: |
+  #!/bin/bash
+  echo "Starting Application"
+  sudo systemctl start nginx
+  echo "Application Started"
+
+startup_script_fold: >
+  This startup script installs all
+  required packages before
+  starting the application.
