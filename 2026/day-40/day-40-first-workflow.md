@@ -1,8 +1,41 @@
 # Day 40 – My First GitHub Actions Workflow
 
-# Task 3 – Understanding the Workflow Anatomy
+## Objective
 
-## Workflow File
+The goal of today's task was to create my first GitHub Actions workflow and understand the basic building blocks of a CI/CD pipeline.
+
+---
+
+# Task 1 – Repository Setup
+
+Created a new public GitHub repository:
+
+**Repository Name:**
+
+```
+github-actions-practice
+```
+
+Created the required GitHub Actions directory structure:
+
+```
+.github/
+└── workflows/
+```
+
+---
+
+# Task 2 – Hello Workflow
+
+Created a workflow file named:
+
+```
+.github/workflows/hello.yml
+```
+
+The workflow triggers automatically on every **push** and performs a simple task of printing a message.
+
+## Workflow
 
 ```yaml
 name: My First GitHub Actions Workflow
@@ -19,30 +52,39 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Print Hello Message
-        run: echo "Hello from GitHub Actions!"
+        run: |
+          echo "Hello from GitHub Actions!"
+
+      - name: Print Current Date and Time
+        run: |
+          date
+
+      - name: Print Branch Name
+        run: |
+          echo "Branch Name: ${{ github.ref_name }}"
+
+      - name: List Repository Files
+        run: |
+          ls -la
+
+      - name: Print Runner Operating System
+        run: |
+          echo "Runner OS: $RUNNER_OS"
 ```
 
 ---
 
-# What Each Key Does
+# Task 3 – Understanding the Workflow
 
-## name
+## `name`
 
-The `name` gives a friendly name to the workflow. It is displayed in the GitHub Actions tab.
-
-**Example:**
-
-```yaml
-name: My First GitHub Actions Workflow
-```
+Provides a friendly name for the workflow that appears in the GitHub Actions tab.
 
 ---
 
-## on
+## `on`
 
-The `on` keyword defines the event that triggers the workflow.
-
-In this workflow:
+Defines the event that triggers the workflow.
 
 ```yaml
 on:
@@ -53,94 +95,124 @@ The workflow starts automatically whenever code is pushed to the repository.
 
 ---
 
-## jobs
+## `jobs`
 
 A workflow can contain one or more jobs.
 
-Each job performs a specific task.
+In this project, there is one job named:
 
-In this workflow:
-
-```yaml
-jobs:
-  greet:
 ```
-
-The workflow contains one job called **greet**.
+greet
+```
 
 ---
 
-## runs-on
+## `runs-on`
 
-This specifies which machine will execute the job.
+Specifies the operating system used by the GitHub-hosted runner.
 
 ```yaml
 runs-on: ubuntu-latest
 ```
 
-GitHub creates a temporary Ubuntu virtual machine and runs all the steps on it.
-
 ---
 
-## steps
+## `steps`
 
 A job is divided into multiple steps.
 
-Each step performs one task.
-
-```yaml
-steps:
-```
-
-In our workflow, we have two steps.
+Each step performs one specific task.
 
 ---
 
-## uses
+## `uses`
 
-The `uses` keyword tells GitHub to use an existing action.
+Runs an existing GitHub Action.
 
 ```yaml
 uses: actions/checkout@v4
 ```
 
-This action downloads the repository code onto the GitHub runner so the workflow can access the project files.
+This action checks out the repository so the runner can access the project files.
 
 ---
 
-## run
+## `run`
 
-The `run` keyword executes shell commands on the runner.
+Executes Linux shell commands on the GitHub runner.
 
 Example:
 
 ```yaml
-run: echo "Hello from GitHub Actions!"
+run: |
+  echo "Hello from GitHub Actions!"
 ```
-
-This prints a message in the workflow logs.
 
 ---
 
-## Step Name
+# Task 4 – Added More Steps
 
-Each step can have a descriptive name.
+The workflow was enhanced by adding additional steps.
 
-Example:
+### Added the following:
+
+- Printed a Hello message
+- Printed the current date and time
+- Printed the branch name
+- Listed all repository files
+- Printed the runner operating system
+
+This helped me understand how GitHub Actions can execute Linux commands and use GitHub context variables.
+
+---
+
+# Task 5 – Breaking and Fixing the Workflow
+
+To understand how GitHub Actions handles failures, I intentionally added a failing step.
 
 ```yaml
-name: Checkout Repository
+- name: Fail the Workflow
+  run: |
+    exit 1
 ```
 
-The step name makes the workflow easier to read in the GitHub Actions interface.
+The workflow failed with the following message:
+
+```
+Process completed with exit code 1.
+```
+
+After reading the workflow logs, I removed the failing step, committed the changes, pushed the updated workflow, and confirmed that the workflow completed successfully.
+
+This exercise helped me understand how to debug failed GitHub Actions workflows.
 
 ---
 
-# Key Learnings
+# What I Learned
 
-- A workflow starts when a defined event occurs.
-- A workflow contains one or more jobs.
-- Each job runs on a GitHub-hosted runner.
-- Jobs contain multiple steps.
-- The `uses` keyword executes reusable GitHub Actions.
-- The `run` keyword executes shell commands.
+- How to create my first GitHub Actions workflow.
+- How GitHub Actions automatically triggers workflows on every push.
+- The purpose of `on`, `jobs`, `runs-on`, `steps`, `uses`, and `run`.
+- How to execute Linux commands using GitHub Actions.
+- How to use GitHub context variables like `${{ github.ref_name }}`.
+- The importance of correct YAML syntax and indentation.
+- How to read GitHub Actions logs and troubleshoot workflow failures.
+
+---
+
+# Screenshots
+
+The following screenshots were captured during the lab:
+
+- Successful GitHub Actions workflow
+- Workflow after adding additional steps
+- Failed workflow showing `Process completed with exit code 1`
+- Final successful workflow after fixing the issue
+
+---
+
+# Outcome
+
+Successfully created, executed, updated, intentionally broke, debugged, and fixed my first GitHub Actions workflow.
+
+This exercise provided a solid foundation for understanding CI/CD pipelines using GitHub Actions.
