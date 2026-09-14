@@ -852,75 +852,148 @@ Documentation:
 
 ## PR Lifecycle
 
-The workflow will be tested using:
+The PR lifecycle workflow was tested using Pull Request #2.
 
-    opened
+The following events were verified:
+
+    `opened
     synchronize
-    reopened
-    closed
+    closed`
 
-For a merged Pull Request:
+The Pull Request was created from:
 
-    PR was merged successfully!
+    `feature/day47-trigger-test`
 
-For a closed Pull Request without merge:
+The workflow successfully displayed:
 
-    PR was closed without being merged.
+    `PR event: opened
+    PR event: synchronize
+    PR event: closed`
+
+The merged Pull Request condition also executed successfully:
+
+    `PR was merged successfully!`
+
+The `closed` event correctly identified the Pull Request as merged.
 
 ## PR Validation
 
-The workflow contains:
+The `PR Validation Checks` workflow was successfully tested.
 
-    File Size Check
+All three validation jobs passed:
+
+    `File Size Check
     Branch Name Check
-    PR Description Check
+    PR Description Check`
+
+The branch validation accepted the:
+
+    `feature/day47-trigger-test`
+
+branch.
+
+The PR description check confirmed that the Pull Request description was present.
 
 ## Scheduled Workflow
 
-The scheduled workflow supports:
+The `Scheduled Tasks` workflow was successfully tested using `workflow_dispatch`.
 
-    Monday 02:30 UTC
+The manual execution completed successfully.
 
-and:
+The workflow performed the GitHub health check and returned a successful HTTP response.
 
-    Every 6 hours
+The workflow contains these cron schedules:
 
-It also supports manual execution using:
+    `30 2 * * 1`
+    `0 */6 * * *`
 
-    workflow_dispatch
+The actual cron executions were not manually observed during testing; the workflow configuration is active and ready for scheduled execution.
 
 ## Smart Triggers
 
-The workflow supports path-based execution using:
+The `Smart Path Triggers` workflow was successfully tested.
 
-    src/**
-    app/**
+A change under:
 
-Documentation-only changes are ignored by:
+    `src/day47-trigger-test.txt`
 
-    paths-ignore
+triggered the workflow successfully.
+
+A Markdown-only change:
+
+    `day47-paths-ignore-test.md`
+
+did not trigger the path-based workflows, confirming the expected `paths` and `paths-ignore` behavior.
 
 ## Workflow Chaining
 
-The expected CI/CD flow is:
+The `workflow_run` pipeline was successfully verified.
 
-    Push
+The execution flow was:
+
+    `Push
       |
       v
     Run Tests
       |
       v
-    Deploy After Tests
+    Deploy After Tests`
+
+The `Run Tests` workflow completed successfully with:
+
+    `Running tests...
+    All tests passed successfully!`
+
+The `Deploy After Tests` workflow then executed successfully and displayed:
+
+    `Test workflow conclusion: success
+    Tests passed successfully.
+    Deploying application...
+    Deployment completed successfully.`
+
+The deployment step ran because the test workflow conclusion was `success`.
 
 ## External Trigger
 
-The expected event payload is:
+The `repository_dispatch` workflow was successfully tested using GitHub CLI.
 
-    {
-      "environment": "production"
-    }
+The event was triggered with:
 
-* * *
+    `gh api repos/ask-vs9/github-actions-practice/dispatches \
+      -F event_type=deploy-request \
+      -F 'client_payload[environment]=production'`
+
+The workflow run was:
+
+    `deploy-request #1`
+
+The `external-deploy` job completed successfully.
+
+The deployment received the client payload:
+
+    `Environment: production`
+
+The deployment output confirmed:
+
+    `Starting deployment...
+    Deploying to: production
+    Deployment request completed successfully.`
+
+This verified the complete external event-driven flow:
+
+    `GitHub CLI
+          |
+          v
+    repository_dispatch
+          |
+          v
+    deploy-request
+          |
+          v
+    external-deploy
+          |
+          v
+    production`
 
 # Key Takeaways
 
