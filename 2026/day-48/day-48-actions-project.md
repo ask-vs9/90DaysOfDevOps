@@ -971,11 +971,13 @@ Future security improvements can include:
 
 ## Pull Request Pipeline
 
-![Day 48 - Pull Request Pipeline](./Screenshot%202026-09-15%20161753%281%29.png)
+<img width="1900" height="962" alt="Screenshot 2026-09-15 161753" src="https://github.com/user-attachments/assets/a418a7c4-c5cf-400f-84c4-a719ef66be93" />
+
 
 ## Main Branch Pipeline
 
-![Day 48 - Main Branch Pipeline](./Screenshot%202026-09-15%20162030%281%29.png)
+<img width="1920" height="942" alt="Screenshot 2026-09-15 162030" src="https://github.com/user-attachments/assets/4d28351c-afda-4438-a1ab-a84ebad213ac" />
+
 
 ## Trivy Security Scan
 
@@ -987,7 +989,8 @@ Trivy security scan completed successfully with zero CRITICAL vulnerabilities in
 
 ## Health Check
 
-![Day 48 - Scheduled Health Check](./Screenshot%202026-09-15%20162857%281%29.png)
+<img width="1902" height="962" alt="Screenshot 2026-09-15 162857" src="https://github.com/user-attachments/assets/21124966-18fd-46d6-90c5-33bc364beb3c" />
+
 
 # Part 22 – GitHub Repositories
 
