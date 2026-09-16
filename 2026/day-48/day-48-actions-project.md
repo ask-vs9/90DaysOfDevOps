@@ -971,19 +971,11 @@ Future security improvements can include:
 
 ## Pull Request Pipeline
 
-Add the GitHub Actions PR pipeline screenshot here.
-
-```text
 ![Day 48 - Pull Request Pipeline](./Screenshot%202026-09-15%20161753%281%29.png)
-```
 
 ## Main Branch Pipeline
 
-Add the successful Main Branch Pipeline screenshot here.
-
-```text
 ![Day 48 - Main Branch Pipeline](./Screenshot%202026-09-15%20162030%281%29.png)
-```
 
 ## Trivy Security Scan
 
@@ -995,13 +987,7 @@ Trivy security scan completed successfully with zero CRITICAL vulnerabilities in
 
 ## Health Check
 
-Add the successful Scheduled Health Check screenshot here.
-
-```text
 ![Day 48 - Scheduled Health Check](./Screenshot%202026-09-15%20162857%281%29.png)
-```
-
----
 
 # Part 22 – GitHub Repositories
 
