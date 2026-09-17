@@ -804,27 +804,10 @@ Repository security:
 
 # Part 17 -- Screenshots
 
-Add the following screenshots to this directory when available.
-
 ## Trivy Security Scan
 
-    ![Day 49 - Trivy Security Scan](./day49-trivy-scan.png)
+  <img width="1920" height="1030" alt="Screenshot 2026-09-17 221719" src="https://github.com/user-attachments/assets/38d4db35-6a4c-4483-835a-89c60a3d98f9" />
 
-## Secret Scanning
-
-    ![Day 49 - Secret Scanning](./day49-secret-scanning.png)
-
-## Secret Protection and Push Protection
-
-    ![Day 49 - Secret Protection and Push Protection](./day49-secret-protection.png)
-
-## Dependency Review
-
-    ![Day 49 - Dependency Review](./day49-dependency-review.png)
-
-## Pull Request
-
-    ![Day 49 - Dependency Review Pull Request](./day49-pr-merged.png)
 
 ------------------------------------------------------------------------
 
