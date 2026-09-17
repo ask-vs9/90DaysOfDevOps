@@ -861,7 +861,8 @@ The final scan shows:
 
 The screenshot also shows that Trivy secret scanning is enabled.
 
-<img width="1920" height="1030" alt="Screenshot 2026-09-17 212444" src="https://github.com/user-attachments/assets/9cd86853-5a92-4bfa-8773-cc22aff712ee" />
+<img width="1920" height="1030" alt="Screenshot 2026-09-17 221719" src="https://github.com/user-attachments/assets/f3b52b13-89dd-4114-b5f9-995bcad65c67" />
+
 
 The other Day 49 security controls were verified directly in GitHub:
 
