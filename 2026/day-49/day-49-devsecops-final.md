@@ -861,7 +861,7 @@ The final scan shows:
 
 The screenshot also shows that Trivy secret scanning is enabled.
 
-![Day 49 - Trivy Security Scan](./day49-trivy-scan.png)
+<img width="1920" height="1030" alt="Screenshot 2026-09-17 212444" src="https://github.com/user-attachments/assets/9cd86853-5a92-4bfa-8773-cc22aff712ee" />
 
 The other Day 49 security controls were verified directly in GitHub:
 
