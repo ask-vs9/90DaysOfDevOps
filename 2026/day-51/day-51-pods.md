@@ -459,22 +459,6 @@ test-pod.yaml
 invalid-pod.yaml
 ```
 
-### Supporting screenshots
-
-```text
-day51-nginx-pod-running.png
-day51-nginx-pod-describe.png
-day51-nginx-curl.png
-day51-busybox.png
-day51-imperative-pods.png
-day51-redis-generated-yaml.png
-day51-dry-run-yaml.png
-day51-validation-success.png
-day51-validation-error.png
-day51-pod-labels.png
-day51-all-pods-running.png
-day51-cleanup.png
-```
 
 ---
 
