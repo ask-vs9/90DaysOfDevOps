@@ -328,35 +328,6 @@ The AWS infrastructure was:
 
 ---
 
-# Learn in Public – LinkedIn
-
-Built a complete AWS networking stack with Terraform today 🚀
-
-📚 **What I Implemented**
-
-✅ Configured the AWS Terraform provider
-✅ Created a VPC and public subnet
-✅ Configured an Internet Gateway
-✅ Created route tables and route table associations
-✅ Configured a Security Group
-✅ Provisioned an EC2 instance
-✅ Created an S3 bucket for application logs
-✅ Visualized Terraform dependencies using `terraform graph`
-✅ Used `depends_on` for an explicit dependency
-✅ Used `create_before_destroy` for EC2 replacement
-✅ Verified Terraform state and AWS resources
-✅ Destroyed the infrastructure after completing the lab
-
-💡 **Key Takeaways**
-
-✔️ Terraform manages infrastructure through a desired-state model
-✔️ Terraform automatically detects implicit dependencies
-✔️ `depends_on` can define dependencies Terraform cannot infer automatically
-✔️ The dependency graph helps visualize infrastructure relationships
-✔️ `create_before_destroy` can reduce downtime during resource replacement
-✔️ Terraform state tracks infrastructure managed by Terraform
-
-
 #90DaysOfDevOps #TerraWeek #DevOpsKaJosh #TrainWithShubham #Terraform #AWS #DevOps #InfrastructureAsCode #CloudComputing #UAEJobs #DubaiJobs
 
 
