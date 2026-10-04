@@ -1,0 +1,21 @@
+digraph G {
+  rankdir = "RL";
+  node [shape = rect, fontname = "sans-serif"];
+  "aws_instance.main" [label="aws_instance.main"];
+  "aws_internet_gateway.main" [label="aws_internet_gateway.main"];
+  "aws_route_table.public" [label="aws_route_table.public"];
+  "aws_route_table_association.public" [label="aws_route_table_association.public"];
+  "aws_s3_bucket.logs" [label="aws_s3_bucket.logs"];
+  "aws_security_group.main" [label="aws_security_group.main"];
+  "aws_subnet.public" [label="aws_subnet.public"];
+  "aws_vpc.main" [label="aws_vpc.main"];
+  "aws_instance.main" -> "aws_security_group.main";
+  "aws_instance.main" -> "aws_subnet.public";
+  "aws_internet_gateway.main" -> "aws_vpc.main";
+  "aws_route_table.public" -> "aws_internet_gateway.main";
+  "aws_route_table_association.public" -> "aws_route_table.public";
+  "aws_route_table_association.public" -> "aws_subnet.public";
+  "aws_s3_bucket.logs" -> "aws_instance.main";
+  "aws_security_group.main" -> "aws_vpc.main";
+  "aws_subnet.public" -> "aws_vpc.main";
+}
