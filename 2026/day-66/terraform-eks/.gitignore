@@ -1,0 +1,16 @@
+
+# Terraform working directory
+.terraform/
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Terraform plan files
+*.tfplan
+*.plan
+
+# Local variable files may contain sensitive values
+*.tfvars
+*.auto.tfvars
