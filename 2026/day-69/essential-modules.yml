@@ -1,0 +1,67 @@
+---
+- name: Demonstrate essential Ansible modules
+  hosts: all_servers
+  become: true
+
+  tasks:
+    - name: Install a package using the apt module
+      ansible.builtin.apt:
+        name: curl
+        state: present
+        update_cache: true
+
+    - name: Ensure Nginx is installed on the web server
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+      when: "'web' in group_names"
+
+    - name: Ensure Nginx service is running on the web server
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+      when: "'web' in group_names"
+
+    - name: Copy application configuration file
+      ansible.builtin.copy:
+        src: files/app.conf
+        dest: /tmp/app.conf
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Create application directory
+      ansible.builtin.file:
+        path: /opt/day69-app
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Run a command and register the result
+      ansible.builtin.command: /usr/bin/uptime
+      register: uptime_result
+      changed_when: false
+
+    - name: Display command output
+      ansible.builtin.debug:
+        var: uptime_result.stdout
+
+    - name: Run a shell command and register the result
+      ansible.builtin.shell: echo "Ansible shell module test on $(hostname)"
+      register: shell_result
+      changed_when: false
+
+    - name: Display shell output
+      ansible.builtin.debug:
+        var: shell_result.stdout
+
+    - name: Add application setting to configuration
+      ansible.builtin.lineinfile:
+        path: /tmp/app.conf
+        line: 'APP_ENV=production'
+        create: true
+        owner: root
+        group: root
+        mode: '0644'

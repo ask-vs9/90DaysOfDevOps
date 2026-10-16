@@ -1,0 +1,35 @@
+---
+- name: Install and configure Nginx
+  hosts: web
+  become: true
+
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Start and enable Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Deploy custom index page
+      ansible.builtin.copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Day 69 - Ansible</title>
+          </head>
+          <body>
+            <h1>Day 69: Ansible Playbooks and Modules</h1>
+            <p>Nginx deployed successfully using Ansible!</p>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'

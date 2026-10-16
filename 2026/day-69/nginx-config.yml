@@ -1,0 +1,53 @@
+---
+- name: Configure Nginx with a handler
+  hosts: web
+  become: true
+
+  tasks:
+    - name: Ensure Nginx is installed
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+
+    - name: Deploy custom Nginx site configuration
+      ansible.builtin.copy:
+        dest: /etc/nginx/sites-available/day69
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          server {
+              listen 80 default_server;
+              listen [::]:80 default_server;
+              root /var/www/html;
+              index index.html;
+              server_name _;
+              location / {
+                  try_files $uri $uri/ =404;
+              }
+          }
+      notify: Validate and reload Nginx
+
+    - name: Enable the custom site
+      ansible.builtin.file:
+        src: /etc/nginx/sites-available/day69
+        dest: /etc/nginx/sites-enabled/day69
+        state: link
+      notify: Validate and reload Nginx
+
+    - name: Remove the default site link
+      ansible.builtin.file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      notify: Validate and reload Nginx
+
+  handlers:
+    - name: Validate and reload Nginx
+      ansible.builtin.command: nginx -t
+      changed_when: false
+      notify: Reload Nginx
+
+    - name: Reload Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
