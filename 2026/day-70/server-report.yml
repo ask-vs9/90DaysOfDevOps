@@ -1,0 +1,50 @@
+---
+- name: Server Health Report
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Check disk space
+      ansible.builtin.command: df -h /
+      register: disk_result
+      changed_when: false
+
+    - name: Check memory
+      ansible.builtin.command: free -m
+      register: memory_result
+      changed_when: false
+
+    - name: Check running services
+      ansible.builtin.shell: systemctl list-units --type=service --state=running | head -20
+      register: services_result
+      changed_when: false
+
+    - name: Generate report
+      ansible.builtin.debug:
+        msg:
+          - "========== {{ inventory_hostname }} =========="
+          - "OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+          - "IP: {{ ansible_default_ipv4.address }}"
+          - "RAM: {{ ansible_memtotal_mb }}MB"
+          - "Disk: {{ disk_result.stdout_lines[1] }}"
+          - "Memory command: {{ memory_result.stdout_lines[1] }}"
+          - "Running services (first 20): {{ services_result.stdout_lines | length }}"
+
+    - name: Flag if disk usage is critically high
+      ansible.builtin.debug:
+        msg: "ALERT: Check disk space on {{ inventory_hostname }}"
+      when: disk_result.stdout is search('(?:9[0-9]|100)%')
+
+    - name: Save report to file
+      ansible.builtin.copy:
+        content: |
+          Server: {{ inventory_hostname }}
+          OS: {{ ansible_distribution }} {{ ansible_distribution_version }}
+          IP: {{ ansible_default_ipv4.address }}
+          RAM: {{ ansible_memtotal_mb }}MB
+          Disk: {{ disk_result.stdout }}
+          Memory: {{ memory_result.stdout }}
+          Running services (first 20): {{ services_result.stdout_lines | length }}
+          Checked at: {{ ansible_date_time.iso8601 }}
+        dest: "/tmp/server-report-{{ inventory_hostname }}.txt"
+        mode: '0644'

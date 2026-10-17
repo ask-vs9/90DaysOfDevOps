@@ -1,0 +1,44 @@
+---
+- name: Conditional tasks demo
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install Nginx only on web servers
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+      when: "'web' in group_names"
+
+    - name: Install MySQL only on database servers
+      ansible.builtin.apt:
+        name: mysql-server
+        state: present
+      when: "'db' in group_names"
+
+    - name: Show warning on low memory hosts
+      ansible.builtin.debug:
+        msg: "WARNING: This host has less than 1GB RAM"
+      when: ansible_memtotal_mb < 1024
+
+    - name: Run only on Ubuntu
+      ansible.builtin.debug:
+        msg: "This is an Ubuntu machine"
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Run only in production
+      ansible.builtin.debug:
+        msg: "Production settings applied"
+      when: app_env == "production"
+
+    - name: Web server with enough memory
+      ansible.builtin.debug:
+        msg: "Web server with enough memory"
+      when:
+        - "'web' in group_names"
+        - ansible_memtotal_mb >= 512
+
+    - name: Run only on web or app servers
+      ansible.builtin.debug:
+        msg: "Either web or app server"
+      when: "'web' in group_names or 'app' in group_names"

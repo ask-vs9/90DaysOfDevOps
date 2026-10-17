@@ -1,0 +1,23 @@
+---
+- name: Show variables for all servers
+  hosts: all
+  tasks:
+    - name: Show common environment
+      ansible.builtin.debug:
+        msg: "Environment: {{ app_env }}"
+
+    - name: Show common packages
+      ansible.builtin.debug:
+        var: common_packages
+
+- name: Show web server variables
+  hosts: web
+  tasks:
+    - name: Show web configuration
+      ansible.builtin.debug:
+        msg: "HTTP port: {{ http_port }}, Max connections: {{ max_connections }}"
+
+    - name: Show host-specific message
+      ansible.builtin.debug:
+        msg: "{{ custom_message }}"
+      when: custom_message is defined
