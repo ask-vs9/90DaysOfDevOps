@@ -91,6 +91,3 @@ ansible web -b -m uri -a 'url=http://127.0.0.1/health status_code=200 return_con
 - `.vault_pass` is protected with file permissions and listed in `.gitignore`.
 - Do not commit `.vault_pass` or expose decrypted credentials.
 
-## Screenshots
-
-The screenshot links above use relative paths. Keep these PNG files in the same `2026/day-72/` directory as this Markdown file so they render correctly on GitHub after pushing.
