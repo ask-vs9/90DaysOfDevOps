@@ -74,4 +74,4 @@ The Node Exporter filesystem collector reports a parsing error for a `9p` filesy
 - `day-74-node-exporter-full.png` — imported community dashboard.
 - `observability-stack/` — Docker Compose, Prometheus, and Grafana provisioning configuration.
 
-All image references above are relative to this Markdown file. Keep the PNG files in the same `2026/day-74/` directory when committing so GitHub renders them inline.
+
