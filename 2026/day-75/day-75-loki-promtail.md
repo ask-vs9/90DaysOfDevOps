@@ -137,12 +137,3 @@ The following images are stored in the `screenshots/` directory next to this Mar
 - Using Docker's Fluentd logging driver with Fluent Bit provided a working log collection path for this environment.
 - Relative Markdown image links must match the repository's directory structure and exact filenames.
 
-## Completion Checklist
-
-- [x] Loki starts and reports ready.
-- [x] Fluent Bit receives and forwards Docker logs.
-- [x] Grafana Loki data source is connected.
-- [x] LogQL queries return expected results.
-- [x] Metrics and logs dashboard created.
-- [x] Screenshots captured and referenced using relative paths.
-- [ ] Commit and push the documentation and screenshots.
